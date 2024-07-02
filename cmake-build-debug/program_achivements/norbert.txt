@@ -1,0 +1,5 @@
+BestResult: 3
+Wins: 1
+Losses: 0
+LastGameWin: true
+LastGameAttempts: 3

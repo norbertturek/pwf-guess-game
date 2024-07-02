@@ -1,14 +1,6 @@
 #include "Player.h"
 #include <sys/stat.h> // For mkdir function
 
-void Player::ensureDirectoryExists(const string& directory) {
-    // Create the directory if it doesn't exist
-    struct stat info;
-    if (stat(directory.c_str(), &info) != 0) {
-        mkdir(directory.c_str(), 0777);
-    }
-}
-
 Player::Player(string _name) : name(_name), bestResult(-1), wins(0), losses(0), lastGameWin(false), lastGameAttempts(0) {
     loadFromFile();
 }
@@ -86,11 +78,8 @@ void Player::loadFromFile() {
 }
 
 void Player::saveToFile() {
-    string directory = "player-scores/";
-    ensureDirectoryExists(directory); // Ensure directory exists
-
-    string filepath = directory + name + ".txt";
-    ofstream file(filepath);
+    ensureDirectoryExists("program_achivements"); // Ensure directory exists
+    ofstream file("program_achivements/" + name + ".txt");
     if (file.is_open()) {
         writeWithLabel(file, "BestResult:", bestResult);
         writeWithLabel(file, "Wins:", wins);
@@ -107,4 +96,12 @@ void Player::writeWithLabel(ofstream& file, const string& label, int value) {
 
 void Player::writeWithLabel(ofstream& file, const string& label, bool value) {
     file << label << " " << (value ? "true" : "false") << endl;
+}
+
+void Player::ensureDirectoryExists(const string& directory) {
+    // Create the directory if it doesn't exist
+    struct stat info;
+    if (stat(directory.c_str(), &info) != 0) {
+        mkdir(directory.c_str(), 0777);
+    }
 }

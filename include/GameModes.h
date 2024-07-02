@@ -4,8 +4,8 @@
 #include "Common.h"
 
 // Function prototypes
-void playerGuesses(Player& player, int maxRange);
-void programGuesses(Player& player, int maxRange);
-void mixedGame(Player& player, int maxRange);
+void playerGuesses(std::vector<Player>& players, int maxRange);
+void programGuesses(std::vector<Player>& players, int maxRange);
+void mixedGame(std::vector<Player>& players, int maxRange);
 
 #endif // GAMEMODES_H

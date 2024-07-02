@@ -20,9 +20,10 @@ public:
     void incrementWins();
     void incrementLosses();
     void setLastGameResult(bool win, int attempts);
-    int getLastGameAttempts(); // New function
+    int getLastGameAttempts();
     void loadFromFile();
     void saveToFile();
+    void ensureDirectoryExists(const string& directory); // Added for directory creation
 
 private:
     string name;
@@ -35,7 +36,6 @@ private:
     // Helper function to write comments with labels
     void writeWithLabel(ofstream& file, const string& label, int value);
     void writeWithLabel(ofstream& file, const string& label, bool value);
-    void ensureDirectoryExists(const string& directory); // Declaration added here
 };
 
 #endif // PLAYER_H
